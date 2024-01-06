@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="BankingSystemV4">
+  <library name="junit-4.6">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/dist/BankingSystemV4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/junit-4.6.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

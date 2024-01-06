@@ -1,4 +1,4 @@
-package bankingsystemv4;
+package metrobank;
 
 import javax.swing.*;
 import java.awt.*;

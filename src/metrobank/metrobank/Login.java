@@ -1,4 +1,4 @@
-package bankingsystemv4;
+package metrobank;
 
 import javax.swing.*;
 import java.awt.*;
@@ -102,7 +102,7 @@ public class Login extends JFrame implements ActionListener{
             }
         } else if (ae.getSource() == signup) {
             this.dispose();
-            Signup1 signup1Window = new Signup1();
+            metrobank.Signup1 signup1Window = new metrobank.Signup1();
             signup1Window.setVisible(true);
         }
             }
