@@ -83,10 +83,18 @@ public class Transactions extends JFrame implements ActionListener{
 
     }
 
-    public void actionPerformed(ActionEvent ae){
-        if (ae.getSource() == b7) { // po shtypi login
-            this.setVisible(false);
-            loginWindow.setVisible(true); // shkon te logimi
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == b7) { // If the logout button is pressed
+            this.setVisible(false); // Hide or close the Transactions window
+            if (loginWindow != null) {
+                loginWindow.clearFields(); // Clear the fields in the Login window
+                loginWindow.setVisible(true); // Show the existing Login window
+            } else {
+                // If loginWindow is null, create a new Login instance and clear the fields
+                Login newLogin = new Login();
+                newLogin.clearFields();
+                newLogin.setVisible(true);
+            }
         }
 
         //MOS I PREK KTO!!!!

@@ -286,21 +286,34 @@ public class Signup1 extends JFrame implements ActionListener{
         setVisible(true);
     }
 
-    public void actionPerformed(ActionEvent ae){
+    public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == b) {
-            String username = t1.getText();
+            // Check if any of the required fields are empty
+            if (t1.getText().trim().isEmpty() ||
+                    t2.getText().trim().isEmpty() ||
+                    t3.getText().trim().isEmpty() ||
+                    t4.getText().trim().isEmpty() ||
+                    t5.getText().trim().isEmpty() ||
+                    t6.getText().trim().isEmpty() ||
+                    t7.getText().trim().isEmpty() ||
+                    dateChooser.getDate() == null) {
 
+                JOptionPane.showMessageDialog(this, "Field is empty. Please fill out all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+                return; // Nuk procedon pa te dhena te pa populluara.
+            }
+
+            String username = t1.getText();
 
             if (!doesUsernameExist(username)) {
                 saveUserData();
                 this.dispose();
                 Signup2 signup2Window = new Signup2(username);
-                signup2Window.setVisible(true); // vjen signup2
+                signup2Window.setVisible(true); // Procedon te Signup2 vetem kur Signup1 eshte e populluar.
             } else {
                 JOptionPane.showMessageDialog(this, "This username is already taken. Please choose a different one.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        }
+    }
 
 
 

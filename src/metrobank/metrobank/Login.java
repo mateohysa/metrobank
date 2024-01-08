@@ -88,6 +88,13 @@ public class Login extends JFrame implements ActionListener{
         if (ae.getSource() == login) {
             String username = accNoField.getText();
             String password = new String(pinField.getPassword());
+
+            // Check if username or password fields are empty
+            if (username.trim().isEmpty() || password.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Username or password cannot be empty.", "Login Error", JOptionPane.ERROR_MESSAGE);
+                return; // Exit the method, preventing further processing
+            }
+
             String userName = verifyCredentials(username, password);
             if (userName != null) {
                 JOptionPane.showMessageDialog(this, "Login Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -98,8 +105,20 @@ public class Login extends JFrame implements ActionListener{
                 accNoField.setText("");
                 pinField.setText("");
             }
+        } else if (ae.getSource() == signup) {
+            // Open the Signup1 window when the signup button is clicked
+            Signup1 signupWindow = new Signup1();
+            signupWindow.setVisible(true);
+            this.setVisible(false); // Optionally hide the login window
         }
+
     }
+    // Method to clear the username and password fields
+    public void clearFields() {
+        accNoField.setText(""); // Clear username field
+        pinField.setText("");   // Clear password field
+    }
+
     public static void main(String args[]){
         new Login().setVisible(true);
     }
