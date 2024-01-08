@@ -23,44 +23,46 @@ public class Signup1 extends JFrame implements ActionListener{
     private void saveUserData() {
         String filePath = "data/users.csv"; // file path
         try (FileWriter csvWriter = new FileWriter(filePath, true)) {
+            csvWriter.append(t1.getText())  // Username
+                    .append(",")
+                    .append(t2.getText())  // Full Name
+                    .append(",");
 
-            csvWriter.append(t1.getText());  //
-            csvWriter.append(",");
-            csvWriter.append(t2.getText());  //
-            csvWriter.append(",");
             if (dateChooser.getDate() != null) {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 String dob = dateFormat.format(dateChooser.getDate());
-                csvWriter.append(dob);
+                csvWriter.append(dob);  // Date of Birth
             } else {
                 csvWriter.append("Not Specified");
             }
-            csvWriter.append(t3.getText());  //
             csvWriter.append(",");
-            String gender = "Not Specified"; // nqs nuk zgjidhet gjinia ngelet not specified
+
+            String gender = "Not Specified";
             if (r1.isSelected()) {
                 gender = "Male";
             } else if (r2.isSelected()) {
                 gender = "Female";
             }
-            csvWriter.append(gender).append(",");
-            csvWriter.append(t4.getText());  //
-            csvWriter.append(",");
-            csvWriter.append(t6.getText());  //
-            csvWriter.append(",");
+            csvWriter.append(gender).append(",");  // Gender
 
-            csvWriter.append(t5.getText());  //
-            csvWriter.append(",");
-            String maritalStatus = "Not Specified"; // Default
+            csvWriter.append(t6.getText())  // PIN
+                    .append(",")
+                    .append(t3.getText())  // Email
+                    .append(",");
+
+            String maritalStatus = "Not Specified";
             if (r3.isSelected()) {
                 maritalStatus = "Married";
             } else if (r4.isSelected()) {
                 maritalStatus = "Single";
             }
-            csvWriter.append(maritalStatus).append(",");
-            csvWriter.append(t7.getText());  //
-
-            csvWriter.append("\n");
+            csvWriter.append(maritalStatus).append(",")  // Marital Status
+                    .append(t4.getText())  // Address
+                    .append(",")
+                    .append(t5.getText())  // City
+                    .append(",")
+                    .append(t7.getText())  // Country
+                    .append("\n");
         } catch (IOException e) {
             e.printStackTrace();
         }

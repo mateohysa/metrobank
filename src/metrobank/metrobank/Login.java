@@ -12,20 +12,20 @@ public class Login extends JFrame implements ActionListener{
     JButton login, signup;
     JTextField accNoField;
     JPasswordField pinField;
-    private boolean verifyCredentials(String username, String password) {
-        String filePath = "data/users.csv"; // file path
-        try (BufferedReader csvReader = new BufferedReader(new FileReader(filePath))) {
-            String row;
-            while ((row = csvReader.readLine()) != null) {
-                String[] data = row.split(",");
-                if (data[0].equals(username) && data[1].equals(password)) {
-                    return true;  // Credentials are valid
+    private String verifyCredentials(String username, String pin) {
+        String filePath = "data/users.csv";
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                if (values.length >= 5 && values[0].equals(username) && values[4].equals(pin)) {
+                    return values[1]; // Return the user's name (assuming it's the second field)
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false;  // Credencialet jan gabim
+        return null; // Login failed
     }
     Login(){
         setLayout(null);
@@ -84,28 +84,22 @@ public class Login extends JFrame implements ActionListener{
         setLocation(350,200);
         getContentPane().setBackground(Color.WHITE);
     }
-    public void actionPerformed (ActionEvent ae){
-        if(ae.getSource() == login){
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == login) {
             String username = accNoField.getText();
             String password = new String(pinField.getPassword());
-            if(verifyCredentials(username, password)){
-                // User is valid, proceed with login
+            String userName = verifyCredentials(username, password);
+            if (userName != null) {
                 JOptionPane.showMessageDialog(this, "Login Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                // implementohet transicioni i userit ne ekranin tjeter akoma per tu zhvilluar
-
-
+                this.setVisible(false);
+                new Transactions(this, userName).setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid username or password. Please try again.", "Login Failed", JOptionPane.ERROR_MESSAGE);
-                // pastrohen fushat nqs user dhe password jan gabim
                 accNoField.setText("");
                 pinField.setText("");
             }
-        } else if (ae.getSource() == signup) {
-            this.dispose();
-            metrobank.Signup1 signup1Window = new metrobank.Signup1();
-            signup1Window.setVisible(true);
         }
-            }
+    }
     public static void main(String args[]){
         new Login().setVisible(true);
     }
