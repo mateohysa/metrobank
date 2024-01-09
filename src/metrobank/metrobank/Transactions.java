@@ -21,11 +21,11 @@ public class Transactions extends JFrame implements ActionListener{
         this.loginWindow = login;
         this.pin = pin;
         setTitle("MetroBank");
-        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("img/background.png"));
-        Image i2 = i1.getImage().getScaledInstance(1000, 1180, Image.SCALE_DEFAULT);
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("img/logo.png"));
+        Image i2 = i1.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
         JLabel l2 = new JLabel(i3);
-        l2.setBounds(0, 0, 960, 1080);
+        l2.setBounds(30, 15, 80, 80);
         add(l2);
 
         l1 = new JLabel();
@@ -47,21 +47,28 @@ public class Transactions extends JFrame implements ActionListener{
         setLayout(null);
 
         l1.setBounds(170,33,700,35);
-        l2.add(l1);
+        add(l1);
         b1.setBounds(276,241,150,35);
-        l2.add(b1);
+        b1.setBackground(Color.lightGray);
+        add(b1);
         b2.setBounds(557,241,150,35);
-        l2.add(b2);
+        b2.setBackground(Color.lightGray);
+        add(b2);
         b3.setBounds(276,341,150,35);
-        l2.add(b3);
+        b3.setBackground(Color.lightGray);
+        add(b3);
         b4.setBounds(557,341,150,35);
-        l2.add(b4);
+        b4.setBackground(Color.lightGray);
+        add(b4);
         b5.setBounds(276,441,150,35);
-        l2.add(b5);
+        b5.setBackground(Color.lightGray);
+        add(b5);
         b6.setBounds(557,441,150,35);
-        l2.add(b6);
+        b6.setBackground(Color.lightGray);
+        add(b6);
         b7.setBounds(839,33,80,28);
-        l2.add(b7);
+        b7.setBackground(Color.lightGray);
+        add(b7);
 
 
         b1.addActionListener(this);
@@ -74,7 +81,7 @@ public class Transactions extends JFrame implements ActionListener{
 
 
         setSize(960,720);
-        setLocationRelativeTo(null);
+        getContentPane().setBackground(Color.WHITE);
         setUndecorated(false);
         setVisible(true);
         setResizable(false);
