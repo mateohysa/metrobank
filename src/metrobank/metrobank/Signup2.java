@@ -236,6 +236,7 @@ public class Signup2 extends JFrame implements ActionListener{
             // Provide feedback to the user
             JOptionPane.showMessageDialog(this, "Details saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
             this.dispose(); // Close the Signup2 window
+            String placeholderFirstName = "New User";
             new Transactions(null, username).setVisible(true);
         }
     }

@@ -99,7 +99,7 @@ public class Login extends JFrame implements ActionListener{
             if (userName != null) {
                 JOptionPane.showMessageDialog(this, "Login Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 this.setVisible(false);
-                new Transactions(this, userName).setVisible(true);
+                new Transactions(this, username).setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid username or password. Please try again.", "Login Failed", JOptionPane.ERROR_MESSAGE);
                 accNoField.setText("");

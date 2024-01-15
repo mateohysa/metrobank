@@ -11,15 +11,17 @@ public class Transactions extends JFrame implements ActionListener{
     JButton b1,b2,b3,b4,b5,b6,b7;
     String pin;
     private Login loginWindow;
+    private String username;
 
-    public Transactions(String firstName) {
-        this(null, firstName); // construktor ekstra me nxjerr emrin atje
+    public Transactions(String username) {
+        this(null, username); // construktor ekstra me nxjerr emrin atje
     }
 
 
-    Transactions(Login login, String firstName){
+    Transactions(Login login,String username){
         this.loginWindow = login;
         this.pin = pin;
+        this.username = username;
         setTitle("MetroBank");
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("img/logo.png"));
         Image i2 = i1.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT);
@@ -29,7 +31,7 @@ public class Transactions extends JFrame implements ActionListener{
         add(l2);
 
         l1 = new JLabel();
-        l1.setText("Welcome to MetroBank, " + firstName); // Set personalized welcome message
+        l1.setText("Welcome to MetroBank, " + username); // Set personalized welcome message
         l1.setForeground(Color.BLACK);
         l1.setFont(new Font("Calibri", Font.BOLD, 36));
         l1.setBounds(170, 33, 700, 35);
@@ -37,7 +39,7 @@ public class Transactions extends JFrame implements ActionListener{
 
 
         b1 = new JButton("Deposit");
-        b2 = new JButton("Cash Withdrawal");
+        b2 = new JButton("Withdraw");
         b3 = new JButton("Fast Cash");
         b4 = new JButton("Mini Statement");
         b5 = new JButton("PIN Change");
@@ -91,44 +93,29 @@ public class Transactions extends JFrame implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource() == b7) { // If the logout button is pressed
-            this.setVisible(false); // Hide or close the Transactions window
+        if (ae.getSource() == b1) { // If the deposit button is pressed
+            this.setVisible(false);
+            new Deposit(username).setVisible(true); // Navigate to the Deposit screen
+        } else if (ae.getSource() == b2) {
+            this.setVisible(false);
+            new Withdraw(username).setVisible(true);
+
+        } else if (ae.getSource() == b7) { // If the logout button is pressed
+            this.setVisible(false);
             if (loginWindow != null) {
                 loginWindow.clearFields(); // Clear the fields in the Login window
                 loginWindow.setVisible(true); // Show the existing Login window
             } else {
-                // If loginWindow is null, create a new Login instance and clear the fields
                 Login newLogin = new Login();
                 newLogin.clearFields();
                 newLogin.setVisible(true);
             }
         }
+        }
 
-        //MOS I PREK KTO!!!!
 
-        //if(ae.getSource()==b1){
-        // setVisible(false);
-        //  new Deposit(pin).setVisible(true);
-        //  }else if(ae.getSource()==b2){
-        //    setVisible(false);
-        // new Withdrawl(pin).setVisible(true);
-        // }else if(ae.getSource()==b3){
-        //     setVisible(false);
-        //     new FastCash(pin).setVisible(true);
-        // }else if(ae.getSource()==b4){
-        //    new MiniStatement(pin).setVisible(true);
-        // }else if(ae.getSource()==b5){
-        //    setVisible(false);
-        //    new Pin(pin).setVisible(true);
-        // }else if(ae.getSource()==b6){
-        //   this.setVisible(false);
-        //  new BalanceEnquiry(pin).setVisible(true);
-        //  }else if(ae.getSource()==b7){
-        //     System.exit(0);
-        //  }
-    }
 
     public static void main(String[] args){
-        new Transactions("Test User").setVisible(true); // e ka ate test user per me dal emri ke faqja mos e luj
+        new Transactions(null,"user123").setVisible(true); // e ka ate test user per me dal emri ke faqja mos e luj
     }
 }

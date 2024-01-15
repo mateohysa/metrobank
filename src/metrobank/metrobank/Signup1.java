@@ -62,7 +62,8 @@ public class Signup1 extends JFrame implements ActionListener{
                     .append(t5.getText())  // City
                     .append(",")
                     .append(t7.getText())  // Country
-                    .append("\n");
+                    .append(",");
+            csvWriter.append("000000000").append("\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
