@@ -126,7 +126,10 @@ public class Transactions extends JFrame implements ActionListener {
         }else if (ae.getSource() == b3) {
             this.setVisible(false);
             new FastCash(username).setVisible(true);
-        }else if (ae.getSource() == b7) { //logout button
+        } else if (ae.getSource()==b5) {
+            this.setVisible(false);
+            new PinChange(username).setVisible(true);
+        } else if (ae.getSource() == b7) { //logout button
             this.setVisible(false);
             Login loginWindow = Login.getInstance(); // SINGLETON PATTERN QUHET
             loginWindow.clearFields();

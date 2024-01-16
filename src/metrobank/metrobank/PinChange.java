@@ -43,13 +43,13 @@ public class PinChange extends JFrame implements ActionListener{
         l4.setForeground(Color.BLACK);
         l4.setFont(new Font("Arial", Font.BOLD, 16));
 
-        t1 = new JTextField();
+        t1 = new JPasswordField();
         t1.setFont(new Font("Calibri", Font.BOLD, 22));
 
-        t2 = new JTextField();
+        t2 = new JPasswordField();
         t2.setFont(new Font("Calibri", Font.BOLD, 22));
 
-        t3 = new JTextField();
+        t3 = new JPasswordField();
         t3.setFont(new Font("Calibri", Font.BOLD, 22));
 
         b1 = new JButton("Confirm"); // regulloje dhe te deposit dhe withdraw
