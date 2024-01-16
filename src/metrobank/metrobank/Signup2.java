@@ -23,28 +23,25 @@ public class Signup2 extends JFrame implements ActionListener{
     private String username;
 
     private void appendData(String[] additionalData) {
-        String filePath = "data/users.csv"; // Path to your CSV file
+        String filePath = "data/users.csv";
         List<String> fileContent = new ArrayList<>();
 
         try {
-            // Read the file and store its content
             fileContent = new ArrayList<>(Files.readAllLines(Paths.get(filePath)));
-
-            // Find the line with the matching username and update it
             for (int i = 0; i < fileContent.size(); i++) {
                 String[] values = fileContent.get(i).split(",");
                 if (values.length > 0 && values[0].equals(this.username)) {
-                    String updatedLine = fileContent.get(i) + String.join(",", additionalData);
+                    String existingData = fileContent.get(i);
+                    String updatedLine = existingData + "," + String.join(",", additionalData) + ",000000000"; // Append additional data and nine zeros
                     fileContent.set(i, updatedLine);
                     break;
                 }
             }
 
-            // Write everything back to the file
+
             Files.write(Paths.get(filePath), fileContent);
         } catch (IOException e) {
             e.printStackTrace();
-            // Handle the exception, possibly with a user notification
         }
     }
 

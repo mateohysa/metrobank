@@ -11,9 +11,9 @@ import java.util.List;
 
 public class Withdraw extends JFrame implements ActionListener {
 
-    JTextField t1,t2;
-    JButton b1,b2,b3;
-    JLabel l1,l2,l3;
+    JTextField t1;
+    JButton b1,b2;
+    JLabel l1;
     String username;
     Withdraw (String username){
         this.username = username;

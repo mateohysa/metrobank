@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class Login extends JFrame implements ActionListener{
     JButton login, signup;
+    private static Login instance;
     JTextField accNoField;
     JPasswordField pinField;
     private String verifyCredentials(String username, String pin) {
@@ -25,7 +26,7 @@ public class Login extends JFrame implements ActionListener{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null; // Login failed
+        return null;
     }
     Login(){
         setLayout(null);
@@ -84,12 +85,18 @@ public class Login extends JFrame implements ActionListener{
         setLocation(350,200);
         getContentPane().setBackground(Color.WHITE);
     }
+    public static Login getInstance() {
+        if (instance == null) {
+            instance = new Login();
+        }
+        return instance;
+    }
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == login) {
             String username = accNoField.getText();
             String password = new String(pinField.getPassword());
 
-            // Check if username or password fields are empty
+
             if (username.trim().isEmpty() || password.trim().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Username or password cannot be empty.", "Login Error", JOptionPane.ERROR_MESSAGE);
                 return; // Exit the method, preventing further processing
@@ -97,7 +104,6 @@ public class Login extends JFrame implements ActionListener{
 
             String userName = verifyCredentials(username, password);
             if (userName != null) {
-                JOptionPane.showMessageDialog(this, "Login Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 this.setVisible(false);
                 new Transactions(this, username).setVisible(true);
             } else {
@@ -106,17 +112,15 @@ public class Login extends JFrame implements ActionListener{
                 pinField.setText("");
             }
         } else if (ae.getSource() == signup) {
-            // Open the Signup1 window when the signup button is clicked
             Signup1 signupWindow = new Signup1();
             signupWindow.setVisible(true);
-            this.setVisible(false); // Optionally hide the login window
+            this.setVisible(false);
         }
 
     }
-    // Method to clear the username and password fields
     public void clearFields() {
-        accNoField.setText(""); // Clear username field
-        pinField.setText("");   // Clear password field
+        accNoField.setText("");
+        pinField.setText("");
     }
 
     public static void main(String args[]){
